@@ -36,7 +36,7 @@ class Controller:
         
         
     def set_gain(self, setting_gain):
-        self.gain = setting_gain
+        self.kp = setting_gain
         
         
     def set_setpoint (self, setting_setpoint):
