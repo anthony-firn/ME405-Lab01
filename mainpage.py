@@ -55,4 +55,9 @@
    #  This means that the encoder needs to be measured at a frequency equal to:
    #
    #  freq = (target Rev/min) * (encoder ticks/revolution) * 5.09*10^-7
+   #
+   #  @section sec_link GitHub Link
+   #  To get access to all the code listed above please see the following link:
+   #
+   #  https://github.com/anthony4tner/ME405-Lab01 
        
