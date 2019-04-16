@@ -13,9 +13,21 @@ class Controller:
     
     
     def __init__(self, gain, setpoint):
-        self.= pyb.Pin (pin1, pyb.Pin.IN)
+        self.gain= gain
 
-        self.= pyb.Pin (pin2, pyb.Pin.IN)
+        self.setpoint= setpoint
+        
+        
+    def 
+        
+        
+    def set_gain(self, setting_gain):
+        self.gain = setting_gain
+        
+        
+    def set_setpoint (self, setting_setpoint):
+        self.setpoint = setting_setpoint
+        
     
         
     
