@@ -12,7 +12,7 @@ import pyb
 class Controller:
     
     
-    def __init__(self, gain, setpoint):
+    def __init__(self, kp, setpoint):
         ''' Initializes controll loop to parameters'''
 
         self.kp = kp
