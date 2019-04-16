@@ -22,17 +22,17 @@ class Controller:
     def calculate(self, position):
         ''' Computes the controll response'''
         
-        # compute error and pwm output
+        # compute error and output
         self._error = self.setpoint - position
-        self._pwm = self.kp * self._error
+        self._output = self.kp * self._error
 
         # saturation
-        if (self._pwm > 100) :
-            self._pwm = 100
-        elif (self._pwm < -100) :
-            self._pwm = -100
+        if (self._output > 100) :
+            self._output = 100
+        elif (self._output < -100) :
+            self._output = -100
 
-        return self._pwm
+        return self._output
         
         
     def set_gain(self, setting_gain):
