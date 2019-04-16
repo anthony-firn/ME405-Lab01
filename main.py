@@ -6,7 +6,7 @@ import pyb
 def main():
     control = controller.Controller(1, 1000)
     motor1 = motor.MotorDriver()
-    encoder1 = encoder.Encoder(pyb.Pin.board.PB6, pyb.Pin.board.PB7, pyb.Timer (8))
+    encoder1 = encoder.Encoder(pyb.Pin.board.PB6, pyb.Pin.board.PB7, pyb.Timer(4))
     
     while True:
         pwm = control.calculate(encoder1.get_position())
