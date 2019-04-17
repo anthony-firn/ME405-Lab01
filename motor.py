@@ -59,7 +59,7 @@ class MotorDriver:
 	#  @param level A signed integer holding the duty
 	#  cycle of the voltage sent to the motor. Range -100 to 100. 
     def set_duty_cycle (self, level):
-        print ('Setting duty cycle to ' + str (level))
+        #print ('Setting duty cycle to ' + str (level))
         
         if (level > 0) :
             self._ch2.pulse_width_percent (0)
