@@ -11,10 +11,12 @@ def main():
     control_duration = 100
 
     while True:
-        key = input()
-        if key == "\r":
+        key = input("press a")
+        print(key)
+        if key == "a":
+            print("get here")
             start_time = utime.ticks_ms()
-            while (start_time + control_duration) < utime.ticks_ms():
+            while (start_time + control_duration) > utime.ticks_ms():
                 pwm = control.calculate(encoder1.get_position())
                 motor1.set_duty_cycle(pwm)
                 key = None
