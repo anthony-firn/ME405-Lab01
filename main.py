@@ -16,7 +16,9 @@ def main():
         if key == "a":
             print("get here")
             start_time = utime.ticks_ms()
+            print("start" + str(start_time))
             while (start_time + control_duration) > utime.ticks_ms():
+                print( "current time" + str(utime.ticks_ms))
                 pwm = control.calculate(encoder1.get_position())
                 motor1.set_duty_cycle(pwm)
                 key = None
