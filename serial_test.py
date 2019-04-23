@@ -31,26 +31,28 @@ while True :
             #print("splitting lines: " + str(splittingLines))
             splittingList.append(splittingLines[:2])
         except :
-            print("splitting lines sucks")
+            print(line)
             pass
 
-    print("graphing" + str(splittingList))
-    for values in splittingList:
-        tempList = []  
-        try:
-            for value in values:
-                tempList.append(float(value))
-            graphingList.append(tempList)
-        except ValueError:
-            print("except")
-            pass
+    if splittingList != [] :
+        for values in splittingList:
+            tempList = []  
+            try:
+                for value in values:
+                    tempList.append(float(value))
+                graphingList.append(tempList)
+            except ValueError:
+                print("except")
+                pass
 
-    print("graphing list " + str(graphingList))
-    for xyvalues in graphingList:
-        xValues.append(xyvalues[0])
-        yValues.append(xyvalues[1])
+        print("graphing list " + str(graphingList))
+        for xyvalues in graphingList:
+            xValues.append(xyvalues[0])
+            yValues.append(xyvalues[1])
         
-    pyplot.plot (xValues, yValues, 'g--')
-    pyplot.xlabel ("Time (seconds)")
-    pyplot.ylabel ("Tick Angle ()")
-    pyplot.title ("Time Vs Ticks")   
+        pyplot.plot (xValues, yValues, 'g--')
+        print("printing plot")
+        pyplot.xlabel ("Time (seconds)")
+        pyplot.ylabel ("Angle (encoder ticks)")
+        pyplot.title ("Time Vs Ticks")
+        pyplot.show()
