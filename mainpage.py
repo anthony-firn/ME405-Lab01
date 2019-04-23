@@ -17,9 +17,10 @@
    #
    #  @subsection subsec_use Usage
    #  To use the motor driver the following format is used:
-   #  motor_mendez_fortner.MotorDriver()
+   #
+   #  motor.MotorDriver()
    #  
-   #  Please see motor_mendez_fortner.MotorDriver for more parameter specifications for the motor driver. 
+   #  Please see motor.MotorDriver for more parameter specifications for the motor driver. 
    #  
    #  @subsection subsec_test Testing 
    #  To test if the driver worked properly we inputted two different speeds in the set_duty_cycle function
@@ -39,6 +40,7 @@
    #
    #  @subsection subsec_use Usage
    #  To use the encoder driver the following format is used:
+   #
    #  encoder.Encoder(pin1, pin2, timer)
    #  
    #  Please see encoder.Encoder for more parameter specifications for the encoder driver. 
@@ -49,15 +51,36 @@
    #  or decreased, which it did. We then moved the motor in the other direction 
    #  to test if the motor's position moved in the opposite direction, which it did. 
    #    
-   #    
    #  @subsection subsec_bug Bugs and Limitations 
    #  There were no bugs in our code. As for limitations our driver measurment is based on shortest movement on an integer ring mod 2^16\n
    #  This means that the encoder needs to be measured at a frequency equal to:
    #
    #  freq = (target Rev/min) * (encoder ticks/revolution) * 5.09*10^-7
    #
+   #  @section sec_Controller Controller Driver
+   #
+   #  @subsection subsec_pur Purpose 
+   #  The purpose of the controller driver is to implement a proportional control loop. 
+   #
+   #  @subsection subsec_use Usage
+   #  To use the controller driver the following format is used:
+   #
+   #  controller.Controller(kp, setpoint)
+   #  
+   #  Please see controller.Controller for more parameter specifications for the controller driver. 
+   #  
+   #  @subsection subsec_test Testing 
+   #  To test if the driver worked properly we created a main function that 
+   #  communicated with a host computer. The host comuputer commuicated over a
+   #  serial interface that sets a variety of gain values. From those gain values,
+   #  we checked to make sure a step response graph was produced with reasonable values.    
+   #    
+   #  @subsection subsec_bug Bugs and Limitations 
+   #  There were no bugs in our code. As for limitations our driver is that you must
+   #  frequently call calculate to get the actuation signal. 
+   #
    #  @section sec_link GitHub Link
    #  To get access to all the code listed above please see the following link:
    #
    #  https://github.com/anthony4tner/ME405-Lab01 
-       
+
