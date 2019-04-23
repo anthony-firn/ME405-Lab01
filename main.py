@@ -5,24 +5,35 @@ import pyb
 import utime
 
 def main():
-    control = controller.Controller(1, 1000)
+    control = controller.Controller(1, 5000)
     motor1 = motor.MotorDriver()
     encoder1 = encoder.Encoder(pyb.Pin.board.PB6, pyb.Pin.board.PB7, pyb.Timer(4))
-    control_duration = 1000
+    control_duration = 300
 
     while True:
         key = input("press a")
-        print(key)
+
+        print("you typed: " + key)
+        key_float = 0.
+        try:
+            key_float = float(key)
+        except:
+            print("not a float")
+        
         if key == "a":
-            print("get here")
             start_time = utime.ticks_ms()
-            print("start" + str(start_time))
+            encoder1.zero()
+            control.clear_list()
             while (start_time + control_duration) > utime.ticks_ms():
-                current_time = utime.ticks_ms
-                print( "current time" + str(current_time))
                 pwm = control.calculate(encoder1.get_position())
                 motor1.set_duty_cycle(pwm)
-                key = None
+            
+            control.print_results()
+        elif (key_float):
+            print("setting gain to: " + str(key_float))
+            control.set_gain(key_float)
+            
+        key = None
         
         
         
