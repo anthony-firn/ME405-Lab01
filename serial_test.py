@@ -12,30 +12,45 @@ xValues = []
 yValues = []
 
 while True :
-    read = input("$")
-    ser.write(read.encode() + b'\r\n')
-    read = ser.readline()
-    while read != '':
-        print(read)
-        read = ''
-        read = ser.readline()
-        for line in read:
-            removeSpaces = line.rstrip()
+    line = input("$")
+    ser.write(line.encode() + b'\r\n')
+    line = ser.readline()
+
+    while line != b'end\r\n':
+        #print(line)
+        line = ''
+        line = ser.readline()
+
+        #parse
+        try :
+            removeSpaces = str(line.rstrip())
+            #print("removed spaces: " + str(removeSpaces))
             splittingLines = removeSpaces.split(",")
+            splittingLines[0] = splittingLines[0][2:]
+            splittingLines[1] = splittingLines[1][1:-1]
+            #print("splitting lines: " + str(splittingLines))
             splittingList.append(splittingLines[:2])
-        for values in splittingList:
-            tempList = []  
-            try:
-                for value in values:
-                    tempList.append(float(value))
-                graphingList.append(tempList)
-            except ValueError:
-                pass
-        for xyvalues in graphingList:
-            xValues.append(xyvalues[0])
-            yValues.append(xyvalues[1])
+        except :
+            print("splitting lines sucks")
+            pass
+
+    print("graphing" + str(splittingList))
+    for values in splittingList:
+        tempList = []  
+        try:
+            for value in values:
+                tempList.append(float(value))
+            graphingList.append(tempList)
+        except ValueError:
+            print("except")
+            pass
+
+    print("graphing list " + str(graphingList))
+    for xyvalues in graphingList:
+        xValues.append(xyvalues[0])
+        yValues.append(xyvalues[1])
         
-        pyplot.plot (xValues, yValues, 'g--')
-        pyplot.xlabel ("Time (seconds)")
-        pyplot.ylabel ("Tick Angle ()")
-        pyplot.title ("Time Vs Ticks")   
+    pyplot.plot (xValues, yValues, 'g--')
+    pyplot.xlabel ("Time (seconds)")
+    pyplot.ylabel ("Tick Angle ()")
+    pyplot.title ("Time Vs Ticks")   

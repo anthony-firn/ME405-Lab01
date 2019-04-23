@@ -29,6 +29,7 @@ def main():
                 motor1.set_duty_cycle(pwm)
             
             control.print_results()
+            print("end")
         elif (key_float):
             print("setting gain to: " + str(key_float))
             control.set_gain(key_float)
