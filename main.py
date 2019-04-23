@@ -24,6 +24,7 @@ def main():
             start_time = utime.ticks_ms()
             encoder1.zero()
             control.clear_list()
+            control.clear_list()
             while (start_time + control_duration) > utime.ticks_ms():
                 pwm = control.calculate(encoder1.get_position())
                 motor1.set_duty_cycle(pwm)
@@ -32,6 +33,7 @@ def main():
             control.clear_list()
             print("end")
         elif (key_float):
+            control.clear_list()
             print("setting gain to: " + str(key_float))
             print("end")
             control.set_gain(key_float)

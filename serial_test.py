@@ -52,7 +52,8 @@ while True :
         
         pyplot.plot (xValues, yValues, 'g--')
         print("printing plot")
-        pyplot.xlabel ("Time (seconds)")
+        pyplot.xlabel ("Time (ms)")
         pyplot.ylabel ("Angle (encoder ticks)")
         pyplot.title ("Time Vs Ticks")
         pyplot.show()
+        graphingList = []

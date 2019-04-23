@@ -35,6 +35,7 @@ class Controller:
         self._setpoint= setpoint
         self._time_list = []
         self._pos_list = []
+        self._start_time = int(utime.ticks_ms())
         
           
     ## Computes the actuation signal to be sent to the motor driver
@@ -45,8 +46,8 @@ class Controller:
     def calculate(self, position):
         
         # compute error and output
-        self._error = self.setpoint - position
-        self._output = self.kp * self._error
+        self._error = self._setpoint - position
+        self._output = self._kp * self._error
 
         # saturation
         if (self._output > 100) :
@@ -54,7 +55,7 @@ class Controller:
         elif (self._output < -100) :
             self._output = -100
 
-        self._time_list.append(int(utime.ticks_ms()))
+        self._time_list.append(int(utime.ticks_ms()) - self._start_time)
         self._pos_list.append(position)
 
         return self._output
@@ -89,6 +90,7 @@ class Controller:
 
         self._time_list = []
         self._pos_list = []
+        self._start_time = int(utime.ticks_ms())
 
 
 
