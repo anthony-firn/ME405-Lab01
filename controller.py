@@ -1,27 +1,48 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 16 15:31:05 2019
 
-@author: claud
-"""
+
+## @file controller.py
+#  Brief doc for encoder.py
+#
+#  Detailed doc for encoder.py 
+#
+#  @author Anthony Fortner, Claudia Mendez
+#
+#  @copyright License Info
+#
+#  @date April 22, 2019
+#
 
 import pyb
 import utime
-
+## 
+#
+#  A controller driver object to compute proportional error and gain control system
+#
+#
+#  @author Anthony Fortner, Claudia Mendez
+#  @date April 9, 2019
 
 class Controller:
     
-    
+    ##  Constructor for controller driver
+    #    
+    #   @param kp control gain 
+    #   @param setpoint desired location of the motor
+
     def __init__(self, kp, setpoint):
-        ''' Initializes controll loop to parameters'''
 
         self.kp = kp
         self.setpoint= setpoint
         self.time_list = []
         self.pos_list = []
         
+          
+    ## Computes the actuation signal to be sent to the motor driver
+    #    
+    #   @param position current position of the motor driver
+    #   @return actuation signal 
+        
     def calculate(self, position):
-        ''' Computes the controll response'''
         
         # compute error and output
         self._error = self.setpoint - position
@@ -38,20 +59,38 @@ class Controller:
 
         return self._output
         
-        
+    ## Sets the current gain value to a new value that is desired.
+    #    
+    #   @param setting_gain new value to set the gain value to
+    
     def set_gain(self, setting_gain):
         self.kp = setting_gain
-        
+
+    ## Sets the current setpoint value to a new value that is desired. 
+    #    
+    #   @param setting_setpoint new value to set the setpoint value to       
         
     def set_setpoint (self, setting_setpoint):
         self.setpoint = setting_setpoint
-        
+  
+    ## Prints the values that are in the time_list and pos_list variables 
+    #         
+              
     def print_results (self):
 
         for i in range(len(self.time_list)) :
             print(str(self.time_list[i]) + ", " + str(self.pos_list[i]))
 
+
+    ## Clears the values that are in the time_list and pos_list variables. 
+    #         
+
     def clear_list (self):
 
         self.time_list = []
         self.pos_list = []
+
+
+
+
+       
