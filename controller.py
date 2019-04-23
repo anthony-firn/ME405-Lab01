@@ -20,7 +20,7 @@ import utime
 #
 #
 #  @author Anthony Fortner, Claudia Mendez
-#  @date April 9, 2019
+#  @date April 22, 2019
 
 class Controller:
     
@@ -31,10 +31,10 @@ class Controller:
 
     def __init__(self, kp, setpoint):
 
-        self.kp = kp
-        self.setpoint= setpoint
-        self.time_list = []
-        self.pos_list = []
+        self._kp = kp
+        self._setpoint= setpoint
+        self._time_list = []
+        self._pos_list = []
         
           
     ## Computes the actuation signal to be sent to the motor driver
@@ -54,8 +54,8 @@ class Controller:
         elif (self._output < -100) :
             self._output = -100
 
-        self.time_list.append(int(utime.ticks_ms()))
-        self.pos_list.append(position)
+        self._time_list.append(int(utime.ticks_ms()))
+        self._pos_list.append(position)
 
         return self._output
         
@@ -64,31 +64,31 @@ class Controller:
     #   @param setting_gain new value to set the gain value to
     
     def set_gain(self, setting_gain):
-        self.kp = setting_gain
+        self._kp = setting_gain
 
     ## Sets the current setpoint value to a new value that is desired. 
     #    
     #   @param setting_setpoint new value to set the setpoint value to       
         
     def set_setpoint (self, setting_setpoint):
-        self.setpoint = setting_setpoint
+        self._setpoint = setting_setpoint
   
-    ## Prints the values that are in the time_list and pos_list variables 
+    ## Prints the values that are in the _time_list and _pos_list variables. 
     #         
               
     def print_results (self):
 
-        for i in range(len(self.time_list)) :
-            print(str(self.time_list[i]) + ", " + str(self.pos_list[i]))
+        for i in range(len(self._time_list)) :
+            print(str(self._time_list[i]) + ", " + str(self._pos_list[i]))
 
 
-    ## Clears the values that are in the time_list and pos_list variables. 
+    ## Clears the values that are in the _time_list and _pos_list variables. 
     #         
 
     def clear_list (self):
 
-        self.time_list = []
-        self.pos_list = []
+        self._time_list = []
+        self._pos_list = []
 
 
 
