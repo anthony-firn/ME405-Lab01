@@ -33,7 +33,7 @@ class Controller:
         elif (self._output < -100) :
             self._output = -100
 
-        self.time_list.append(utime.ticks_ms())
+        self.time_list.append(int(utime.ticks_ms()))
         self.pos_list.append(position)
 
         return self._output
@@ -51,6 +51,7 @@ class Controller:
         for i in range(len(self.time_list)) :
             print(str(self.time_list[i]) + ", " + str(self.pos_list[i]))
 
-        
-    
-    
+    def clear_list (self):
+
+        self.time_list = []
+        self.pos_list = []
